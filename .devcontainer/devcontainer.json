@@ -1,5 +1,5 @@
 {
-    "name": "enso-backend",
+    "name": "myapp",
     "dockerComposeFile": "../docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/app",
