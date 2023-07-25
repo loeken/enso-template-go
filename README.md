@@ -1,4 +1,4 @@
-# enso-template-vue
+# enso
 
 ## 1. create .env file
 this file is for local development, when running in prod modes the secrets will be injected as env vars, your app shall read from env vars
