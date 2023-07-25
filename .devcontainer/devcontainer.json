@@ -1,0 +1,38 @@
+{
+    "name": "enso-backend",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/app",
+	"forwardPorts": [8080],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"aldijav.golangwithdidi",
+				"soren.go-coverage-viewer",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-vscode-remote.remote-containers",
+				"github.codespaces",
+				"ryanluker.vscode-coverage-gutters",
+				"p1c2u.docker-compose",
+				"ms-azuretools.vscode-docker",
+				"github.vscode-pull-request-github",
+				"hollowtree.vue-snippets",
+				"sdras.vue-vscode-snippets",
+				"editorconfig.editorconfig",
+				"dbaeumer.vscode-eslint",
+				"nhoizey.gremlins",
+				"oderwat.indent-rainbow",
+				"willjleong.nuxt-typescript-snippets",
+				"bradlc.vscode-tailwindcss",
+				"vue.vscode-typescript-vue-plugin",
+				"vue.volar",
+				"rangav.vscode-thunder-client",
+				"exer7um.vue-3-vscode-snippets",
+				"redhat.ansible",
+				"golang.go",
+				"github.vscode-github-actions",
+				"ms-vscode-remote.remote-ssh"
+			]
+        }
+    }
+}
