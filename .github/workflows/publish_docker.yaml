@@ -8,7 +8,7 @@ name: Build and Push Docker image
     - cron: '0 10 * * 1'
 jobs:
   docker:
-    if: github.repository == 'loeken/enso-templates-base'
+    if: github.repository == 'loeken/enso-template-base'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -20,10 +20,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build and push
+      - name: Build and push dev version
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./deploy/docker/Dockerfile.base
+          file: ./deploy/docker/Dockerfile.base.dev
+          push: true
+          tags: loeken/enso-template-base-dev:3.18
+      - name: Build and push prod version
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./deploy/docker/Dockerfile.base.prod
           push: true
           tags: loeken/enso-template-base:3.18
