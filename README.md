@@ -10,8 +10,8 @@ these are a set of repository templates i setup for a few different languages
 
 all these repos ship with a similar setup:
 
-# 2. components
-## 2.1. .devcontainer
+# 2. components/folders
+## 2.1. .devcontainer folder
 this folder contains a json defining how vscode can start the contents of this folder. It defines which extensions to install in vscode, and runs the docker-compose.ymal file which in turn will startup the app defined in deploy/docker/Dockerfile.dev
 
 on first load of the project you will be asked to:
@@ -23,20 +23,20 @@ click on the "Reopen in Container", ( read more in [3. setup](#3-setup))
 
 This will start the application via docker-compose and also allows you to start the container as a codespace on github's infrastructure and allows you to scale up the hardware.
 
-## 2.2. .github
+## 2.2. .github folder
 the go/python/nodejs repos use the enso-template-base as an upstream, the github folder contains a workflow to publish the enso-template-base* images on docker hub so they can be re-used in the other templates
 
-## 2.3. .vscode
+## 2.3. .vscode folder
 this has the launch config ( when pressing F5 in vscode's devcontainer/codespace, it will start the application, if supported in debug mode )
 
-## 2.4. deploy
-### 2.4.1. deploy/docker
+## 2.4. deploy folder
+### 2.4.1. deploy/docker folder
 this folder contains all the dockerfiles
 
-### 2.4.2. deploy/helm
+### 2.4.2. deploy/helm folder
 this contains the helm chart to startup this application
 
-### 2.4.3. deploy/argocd
+### 2.4.3. deploy/argocd folder
 this contains argocd app definitions to install helm charts (mostly localted in deploy/helm )
 
 # 3. setup
