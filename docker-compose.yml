@@ -1,0 +1,62 @@
+version: '3'
+services:
+  app:
+    container_name: myapp
+    build:
+      context: .
+      dockerfile: ./deploy/docker/Dockerfile.dev
+      args:
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
+    env_file: .env
+    ports: 
+      - ${PORT}:${PORT}
+    restart: on-failure
+    depends_on:
+      - myapp-pg
+    networks:
+      - myapp-network
+    volumes:
+      - ${HOME}/.config/gh:/home/vscode/.config/gh
+      - ${HOME}/.ssh:/home/vscode/.ssh
+
+  # myapp-pg:
+  #   image: postgres:latest
+  #   container_name: myapp-pg
+  #   hostname: myapp-pg
+  #   environment:
+  #     - POSTGRES_USER=${DB_USER}  
+  #     - POSTGRES_PASSWORD=${DB_PASS}
+  #     - POSTGRES_DB=${DB_NAME}
+  #     - DATABASE_HOST=${DB_HOST} 
+  #     - TZ=UTC
+  #     - PGTZ=UTC
+  #   ports:
+  #     - '5432:5432'
+  #   restart: on-failure
+  #   volumes:
+  #     - database_postgres:/var/lib/postgresql/data
+  #   networks:
+  #     - myapp-network
+
+  # redis:
+  #   image: bitnami/redis:latest
+  #   container_name: redis
+  #   hostname: redis
+  #   ports:
+  #     - '6379:6379'
+  #   restart: on-failure
+  #   environment:
+  #     - ALLOW_EMTPY_PASSWORD=no
+  #     - REDIS_PASSWORD=${DB_REDIS_PASSWORD}
+  #   networks:
+  #     - myapp-network
+
+volumes:
+  database_postgres:
+
+
+# Networks to be created to facilitate communication between containers
+networks:
+  myapp-network:
+    driver: bridge

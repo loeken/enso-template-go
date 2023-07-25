@@ -1,0 +1,25 @@
+{
+    "name": "myapp",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/app",
+	"forwardPorts": [8080],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-vscode-remote.remote-containers",
+				"github.codespaces",
+				"ryanluker.vscode-coverage-gutters",
+				"p1c2u.docker-compose",
+				"github.vscode-pull-request-github",
+				"editorconfig.editorconfig",
+				"dbaeumer.vscode-eslint",
+				"nhoizey.gremlins",
+				"oderwat.indent-rainbow",
+				"rangav.vscode-thunder-client",
+				"github.vscode-github-actions"
+			]
+        }
+    }
+}

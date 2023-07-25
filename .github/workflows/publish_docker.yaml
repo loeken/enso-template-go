@@ -4,8 +4,11 @@ name: Build and Push Docker image
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 10 * * 1'
 jobs:
   docker:
+    if: github.repository == 'loeken/enso-templates-base'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -21,6 +24,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./deploy/docker/Dockerfile
+          file: ./deploy/docker/Dockerfile.base
           push: true
           tags: loeken/enso-template-base:3.18
