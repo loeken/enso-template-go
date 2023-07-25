@@ -4,7 +4,7 @@ FROM loeken/enso-template-base-dev:3.18 as base
 # Install necessary tools and dependencies
 RUN sudo apk add --no-cache go
 
-COPY main.go main.go
+COPY . .
 
 CMD ["go", "run", "main.go"]
 #CMD ["tail", "-f", "/dev/null"]
