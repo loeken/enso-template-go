@@ -7,8 +7,10 @@ RUN sudo apk add --no-cache go
 
 COPY . .
 
-# install gopls for development
-RUN go install -v golang.org/x/tools/gopls@latest
+# install gopls for development / dlv for debug
+RUN go install -v golang.org/x/tools/gopls@latest# Install curl and Delve
+RUN CGO_ENABLED=0 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest
+
 
 CMD ["go", "run", "main.go"]
 #CMD ["tail", "-f", "/dev/null"]
