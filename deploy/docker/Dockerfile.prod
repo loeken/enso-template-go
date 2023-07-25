@@ -1,0 +1,14 @@
+# First stage: Generate Nuxt app
+FROM loeken/enso-template-base:3.18 as base
+
+# Install necessary tools and dependencies
+RUN sudo apk add --no-cache go
+
+COPY main.go /app
+COPY go.* /app
+
+# Build your application
+RUN CGO_ENABLED=0 go build -o enso .
+
+# CMD ["go", "run", "main.go"]
+CMD ["tail", "-f", "/dev/null"]
