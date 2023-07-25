@@ -1,5 +1,5 @@
 # First stage: Generate Nuxt app
-FROM enso-template-base-dev:3.18
+FROM alpine:3.18
 
 # Set the argument for user id and group id
 ARG USER_ID=1000
