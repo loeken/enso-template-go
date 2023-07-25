@@ -1,6 +1,9 @@
 # First stage: Generate Nuxt app
 FROM loeken/enso-template-base-dev:3.18 as base
 
+# install gopls
+RUN go install -v golang.org/x/tools/gopls@latest
+
 # Install necessary tools and dependencies
 RUN sudo apk add --no-cache go
 
