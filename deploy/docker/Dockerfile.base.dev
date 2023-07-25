@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 # Install necessary tools and dependencies
-RUN apk add --no-cache git curl bash gpg sudo
+RUN apk add --no-cache git curl bash gpg sudo openssh
 
 # Set the argument for user id and group id
 ARG USER_ID=1000
