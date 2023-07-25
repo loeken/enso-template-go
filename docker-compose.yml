@@ -12,8 +12,8 @@ services:
     ports: 
       - ${PORT}:${PORT}
     restart: on-failure
-    depends_on:
-      - myapp-pg
+    # depends_on:
+    #   - myapp-pg
     networks:
       - myapp-network
     volumes:
