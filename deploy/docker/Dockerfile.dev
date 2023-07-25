@@ -3,12 +3,12 @@ FROM loeken/enso-template-base-dev:3.18 as base
 
 
 # Install necessary tools and dependencies
-RUN sudo apk add --no-cache go
+RUN sudo apk add --no-cache go curl
 
 COPY . .
 
 # install gopls for development / dlv for debug
-RUN go install -v golang.org/x/tools/gopls@latest# Install curl and Delve
+RUN go install -v golang.org/x/tools/gopls@latest 
 RUN CGO_ENABLED=0 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest
 
 
