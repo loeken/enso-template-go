@@ -1,0 +1,49 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: ssh://git@github.com/{{ .Values.githubUser }}/{{ .Values.githubRepo }}
+    path: deploy/helm/
+    targetRevision: HEAD
+    helm:
+      values: |
+        githubUser: {{ .Values.githubUser }}
+        githubRepo: {{ .Values.githubRepo }}
+        # image:
+        #   tag: 1.0.0
+        # controller:
+        #   replicas: 2
+        # ingress:
+        #   main:
+        #     annotations:
+        #       kubernetes.io/ingress.class: "nginx"
+        #       cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        #       external-dns.alpha.kubernetes.io/hostname: "enso.loeken.xyz."
+        #       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+        #       external-dns.alpha.kubernetes.io/ttl: "120"
+        #     enabled: true
+        #     hosts:
+        #       - host: enso.loeken.xyz
+        #         paths:
+        #           - path: /
+        #             pathType: Prefix
+        #             service:
+        #               port: 80
+        #     tls:
+        #     - secretName: enso-frontend-tls
+        #       hosts:
+        #         - enso.loeken.xyz
+  destination:
+    namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

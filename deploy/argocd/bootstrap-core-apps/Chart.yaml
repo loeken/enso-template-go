@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bootstrap-core-apps
+description: A Helm chart to bootstrap a specific chart
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
