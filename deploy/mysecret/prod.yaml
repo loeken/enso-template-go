@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app
+  namespace: app
+type: Opaque
+stringData:
+  foo: bar
