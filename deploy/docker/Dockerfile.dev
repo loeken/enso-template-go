@@ -1,9 +1,30 @@
 # First stage: Generate Nuxt app
-FROM loeken/enso-template-base-dev:3.18 as base
-
+FROM golang:1.20.6-alpine3.18
 
 # Install necessary tools and dependencies
-RUN sudo apk add --no-cache go curl
+RUN apk add --no-cache git curl bash gpg sudo openssh zsh apk-tools-zsh-completion nodejs npm
+
+# Set the argument for user id and group id
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN mkdir -p /app
+
+# Create a new group using the provided group id and create a new user 'vscode' with the provided user id in that group
+RUN addgroup -g $GROUP_ID vscode \
+    && adduser -D -u ${USER_ID} -G vscode vscode \
+    && echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
+    && chmod 0440 /etc/sudoers.d/vscode \
+    && chown -R vscode:vscode /app
+
+# switch to non root user
+USER vscode
+WORKDIR /app
+
+SHELL ["/bin/zsh", "-c"]
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+## app specific
+
 
 COPY . .
 

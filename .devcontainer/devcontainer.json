@@ -1,7 +1,7 @@
 {
     "name": "myapp",
     "dockerComposeFile": "../docker-compose.yml",
-    "service": "app",
+    "service": "myapp",
     "workspaceFolder": "/app",
 	"forwardPorts": [8080],
     "customizations": {
