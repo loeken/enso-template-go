@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 # Install necessary tools and dependencies
-RUN apk add --no-cache git curl bash gpg sudo openssh
+RUN apk add --no-cache git curl bash gpg sudo openssh zsh apk-tools-zsh-completion
 
 # Set the argument for user id and group id
 ARG USER_ID=1000
@@ -20,4 +20,6 @@ RUN addgroup -g $GROUP_ID vscode \
 USER vscode
 WORKDIR /app
 
+SHELL ["/bin/zsh", "-c"]
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 CMD ["tail", "-f", "/dev/null"]
