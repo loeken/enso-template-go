@@ -17,7 +17,7 @@ services:
     networks:
       - myapp-network
     volumes:
-      - ${HOME}/.config/gh:/home/vscode/.config/gh
+      # - ${HOME}/.config/gh:/home/vscode/.config/gh
       - ${HOME}/.ssh:/home/vscode/.ssh
 
   # myapp-pg:
