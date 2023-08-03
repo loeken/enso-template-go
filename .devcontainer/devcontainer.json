@@ -3,7 +3,6 @@
     "dockerComposeFile": "../docker-compose.yml",
     "service": "myapp",
     "workspaceFolder": "/app",
-	"forwardPorts": [8080],
     "customizations": {
         "vscode": {
             "extensions": [
