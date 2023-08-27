@@ -18,33 +18,9 @@ spec:
           limits:
             cpu: 200m
               memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
-        # image:
-        #   tag: 1.0.0
-        # controller:
-        #   replicas: 2
-        # ingress:
-        #   main:
-        #     annotations:
-        #       kubernetes.io/ingress.class: "nginx"
-        #       cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        #       external-dns.alpha.kubernetes.io/hostname: "enso.loeken.xyz."
-        #       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-        #       external-dns.alpha.kubernetes.io/ttl: "120"
-        #     enabled: true
-        #     hosts:
-        #       - host: enso.loeken.xyz
-        #         paths:
-        #           - path: /
-        #             pathType: Prefix
-        #             service:
-        #               port: 80
-        #     tls:
-        #     - secretName: enso-frontend-tls
-        #       hosts:
-        #         - enso.loeken.xyz
+          requests:
+            cpu: 100m
+            memory: 128Mi
   destination:
     namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
