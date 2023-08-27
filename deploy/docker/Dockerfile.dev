@@ -33,6 +33,5 @@ RUN go install -v golang.org/x/tools/gopls@latest
 RUN CGO_ENABLED=0 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest
 
 RUN sudo chown -R vscode:vscode /app
-RUN git config --global --add safe.directory /app
 # CMD ["go", "run", "main.go"]
 CMD ["tail", "-f", "/dev/null"]
