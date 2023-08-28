@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: {{ .Values.githubUser }}-{{ .Values.githubRepo }}
   namespace: argocd
+  annotations:
+    author: {{ .Values.email }}
 spec:
   project: default
   source:
@@ -12,9 +14,14 @@ spec:
     targetRevision: HEAD
     helm:
       values: |
-        githubUser: {{ .Values.githubUser }}
-        githubRepo: {{ .Values.githubRepo }}
-        email: {{ .Values.email }}
+        ### customize env var section here
+        image:
+          repository: user/repo
+        service:
+          main:
+            ports:
+              http:
+                port: 8080
   destination:
     namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
