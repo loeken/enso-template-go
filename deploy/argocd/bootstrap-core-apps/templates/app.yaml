@@ -14,7 +14,6 @@ spec:
     targetRevision: HEAD
     helm:
       values: |
-        ### customize env var section here
         image:
           repository: user/repo
         service:
