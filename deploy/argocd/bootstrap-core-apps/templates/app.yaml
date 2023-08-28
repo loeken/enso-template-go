@@ -14,13 +14,6 @@ spec:
       values: |
         githubUser: {{ .Values.githubUser }}
         githubRepo: {{ .Values.githubRepo }}
-        resources:
-          limits:
-            cpu: 200m
-              memory: 256Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
   destination:
     namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
