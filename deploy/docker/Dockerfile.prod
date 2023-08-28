@@ -20,9 +20,7 @@ RUN addgroup -g $GROUP_ID prod \
 USER prod
 WORKDIR /app
 
-## app specific
-
-
+## copy files into container
 COPY . .
 
 # Build your application
