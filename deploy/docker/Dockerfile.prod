@@ -1,11 +1,29 @@
 # First stage: Generate Nuxt app
-FROM loeken/enso-template-base:3.18 as base
+FROM golang:1.20.6-alpine3.18
 
 # Install necessary tools and dependencies
-RUN sudo apk add --no-cache go
+RUN apk add --no-cache openssh
 
-COPY main.go /app
-COPY go.* /app
+# Set the argument for user id and group id
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN mkdir -p /app
+
+# Create a new group using the provided group id and create a new user 'prod' with the provided user id in that group
+RUN addgroup -g $GROUP_ID prod \
+    && adduser -D -u ${USER_ID} -G prod prod \
+    && echo "prod ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/prod \
+    && chmod 0440 /etc/sudoers.d/prod \
+    && chown -R prod:prod /app
+
+# switch to non root user
+USER prod
+WORKDIR /app
+
+## app specific
+
+
+COPY . .
 
 # Build your application
 RUN CGO_ENABLED=0 go build -o myapp .
