@@ -14,6 +14,7 @@ spec:
       values: |
         githubUser: {{ .Values.githubUser }}
         githubRepo: {{ .Values.githubRepo }}
+        email: {{ .Values.email }}
   destination:
     namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
