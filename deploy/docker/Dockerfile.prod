@@ -12,8 +12,6 @@ RUN mkdir -p /app
 # Create a new group using the provided group id and create a new user 'prod' with the provided user id in that group
 RUN addgroup -g $GROUP_ID prod \
     && adduser -D -u ${USER_ID} -G prod prod \
-    && echo "prod ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/prod \
-    && chmod 0440 /etc/sudoers.d/prod \
     && chown -R prod:prod /app
 
 # switch to non root user
