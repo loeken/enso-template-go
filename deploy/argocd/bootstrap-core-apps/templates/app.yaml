@@ -22,7 +22,7 @@ spec:
               http:
                 port: 8080
   destination:
-    namespace: {{ .Values.githubUser }}_{{ .Values.githubRepo }}
+    namespace: {{ .Values.githubUser }}-{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
