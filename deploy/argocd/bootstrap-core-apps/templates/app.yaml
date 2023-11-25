@@ -12,15 +12,15 @@ spec:
     repoURL: ssh://git@github.com/{{ .Values.githubUser }}/{{ .Values.githubRepo }}
     path: deploy/helm/
     targetRevision: HEAD
-    helm:
-      values: |
-        image:
-          repository: user/repo
-        service:
-          main:
-            ports:
-              http:
-                port: 8080
+    # helm:
+    #   values: |
+    #     image:
+    #       repository: user/repo
+    #     service:
+    #       main:
+    #         ports:
+    #           http:
+    #             port: 80
   destination:
     namespace: {{ .Values.githubUser }}-{{ .Values.githubRepo }}
     server: https://kubernetes.default.svc
